@@ -29,4 +29,9 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/api/test")
+    public String test() {
+        return "Some test!";
+    }
 }
