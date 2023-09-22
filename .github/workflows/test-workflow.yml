@@ -1,0 +1,29 @@
+name: test-workflow
+run-name: Running some tests
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+            java-version: '17'
+            distribution: 'temurin'
+            cache: maven
+
+      - name: Build with Maven
+        run: mvn clean verify
+
+      - name: Test Report
+        uses: actions/upload-artifact@v3
+        if: success() || failure()
+        with:
+          name: SpringBoot Test Report
+          path: target/site/serenity
