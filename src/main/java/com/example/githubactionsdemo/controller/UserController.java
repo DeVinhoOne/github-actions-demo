@@ -32,6 +32,6 @@ public class UserController {
 
     @GetMapping("/api/test")
     public String test() {
-        return "Some test!";
+        return "Some test!!!";
     }
 }
